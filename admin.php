@@ -1,3 +1,43 @@
+<?php
+
+include 'connect.php';
+
+session_start();
+
+// التحقق من تسجيل الدخول
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
+
+
+// تنقيح المدخلات
+function sanitizeInput($input) {
+    global $conn;
+    $input = trim($input);
+    $input = mysqli_real_escape_string($conn, $input);
+    return $input;
+}
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['delete'])) {
+    if (isset($_POST['traveler_id'])) {
+        $travelerIDs = $_POST['traveler_id'];
+
+        foreach ($travelerIDs as $id) {
+            $id = sanitizeInput($id);
+            $sql = "DELETE FROM travelers WHERE id = '$id'";
+            if (!mysqli_query($conn, $sql)) {
+                echo "<p class='alert alert-danger'>حدث خطأ أثناء حذف المسافر رقم $id: " . mysqli_error($conn) . "</p>";
+            }
+        }
+        echo "<p class='alert alert-success'>تم حذف المسافرين بنجاح!</p>";
+    } else {
+        echo "<p class='alert alert-warning'>يرجى تحديد مسافر واحد على الأقل لحذفه.</p>";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html dir="rtl">
 <head>
@@ -37,40 +77,14 @@
     <br>
 
     <?php
-
-    include 'connect.php';
-
-    // Check if the form is submitted
-    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['delete'])) {
-        // Check if at least one traveler is selected
-        if (isset($_POST['traveler_id'])) {
-            // Get the selected traveler IDs to delete
-            $travelerIDs = $_POST["traveler_id"];
-
-            // Delete the selected traveler records from the database
-            $ids = implode(",", $travelerIDs); // Convert the array to a comma-separated string
-            $sql = "DELETE FROM travelers WHERE id IN ($ids)";
-            if (mysqli_query($conn, $sql)) {
-                echo "<p class='alert alert-success'>تم حذف المسافرين بنجاح!</p>";
-            } else {
-                echo "<p class='alert alert-danger'>حدث خطأ أثناء حذف المسافرين: " . mysqli_error($conn) . "</p>";
-            }
-        } else {
-            echo "<p class='alert alert-warning'>يرجى تحديد مسافر واحد على الأقل لحذفه.</p>";
-        }
-    }
-    ?>
-
-
-    <h2 class="text-right">قائمة الطلاب:</h2>
-    <?php
-    // Fetch and display the existing travelers from the database
     $sql = "SELECT * FROM travelers";
     $result = mysqli_query($conn, $sql);
+
     if (mysqli_num_rows($result) > 0) {
         echo "<form method='post' action=''>";
         echo "<table class='table'>";
         echo "<tr><th>الرقم التسلسلي</th><th>اسم الطالب</th><th>الجامعة</th><th>موقع الطالب</th><th>ساعة الانتهاء</th><th>حذف</th></tr>";
+
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
             echo "<td>" . $row['id'] . "</td>";
@@ -81,6 +95,7 @@
             echo "<td><input type='checkbox' name='traveler_id[]' value='" . $row['id'] . "'></td>";
             echo "</tr>";
         }
+
         echo "</table>";
         echo "<button type='submit' name='delete' class='btn btn-danger'>حذف المحددين</button>";
         echo "</form>";
@@ -122,7 +137,7 @@
     <h3 class="text-right">تغيير اسم المستخدم وكلمة المرور</h3>
     <br>
     <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#changeUsernameModal">
-    تحديث
+        تحديث
     </button>
     <br>
     <br>
