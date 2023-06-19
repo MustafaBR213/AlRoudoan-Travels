@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>إيصال الرحلة</title>
+    <title>إيصال الحجز</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body{
-            padding:0px
+        body {
+            padding: 0;
         }
-        .containt {
+
+        .container {
             margin-top: 50px;
-            border: 1px solid #ccc;
             padding: 20px;
             max-width: 500px;
             margin-left: auto;
@@ -50,8 +51,39 @@
             font-size: 18px;
             margin-top: 30px;
         }
+
+        /* Responsive styles for phones */
+        @media (max-width: 576px) {
+            .container {
+                margin-top: 30px;
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            .invoice-details {
+                margin-bottom: 10px;
+                font-size: 14px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            .cancel-button button {
+                font-size: 14px;
+            }
+
+            .payment-details {
+                font-size: 16px;
+                margin-top: 20px;
+            }
+        }
     </style>
-<script>
+    <script>
         function printPage() {
             window.print();
         }
@@ -60,9 +92,9 @@
 <body>
 <?php include 'navigation.php'; ?>
 
-<div class="containt" dir="rtl">
+<div class="container" dir="rtl">
     <h1>وصل الحجز</h1>
-    
+
     <?php
     // Get the current date
     $currentDate = date('Y-m-d');
@@ -81,7 +113,7 @@
         $end_hour = $_SESSION["end_hour"];
 
         // Display the traveler's details
-        
+
         echo "<table>";
         echo "<tr><th>الاسم</th><td>$name</td></tr>";
         echo "<tr><th>الجامعة</th><td>$university</td></tr>";
@@ -108,32 +140,24 @@
         }
 
         // Display payment details
-        
         echo "<div class='payment-details'>الرجاء إتمام عملية الدفع بقيمة 50 ليرة تركية</div>";
         echo "<div class='payment-details'>التقط صورة لوصل الحجز</div>";
-        
+
     } else {
         // Session variables not set, redirect to the index page
         header("Location: index.php");
         exit();
     }
     ?>
-        <div class="text-center">
-    <?php
-    echo "<button class='btn btn-primary' onclick='printPage()'>احفظ الوصل</button>";
-    echo ' <a href="index.php" class="btn btn-primary">الصفحة الرئيسية</a>';
-    ?>
+    <div class="text-center">
+        <?php
+        echo "<button class='btn btn-primary' onclick='printPage()'>احفظ الوصل</button>";
+        echo ' <a href="index.php" class="btn btn-primary">الصفحة الرئيسية</a>';
+        ?>
+    </div>
 </div>
 
-
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
-
-    </div>
-
-<br><br><br><br><br>
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
-
 </html>
