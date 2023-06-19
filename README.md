@@ -36,8 +36,8 @@ To run the website locally, follow these steps:
 
 ## Contributors
 
-- John Doe (@johndoe)
-- Jane Smith (@janesmith)
+- Mohammad Adnan Jaded
+- Mustafa Brooky
 
 Please feel free to contribute by submitting bug reports, feature requests, or pull requests. For major changes, please open an issue first to discuss the proposed changes.
 
