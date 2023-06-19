@@ -2,38 +2,43 @@
 
 include 'connect.php';
 
+session_start();
 
-// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['submit'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    // التحقق من وجود المفاتيح "username" و "password"
+    if (isset($_POST['username']) && isset($_POST['password'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
 
-    // Query the admin table to check if the username and password match
-    $query = "SELECT * FROM admin WHERE username = '$username' AND password = '$password'";
-    $result = mysqli_query($conn, $query);
+        // تنقيح المدخلات
+        $username = mysqli_real_escape_string($conn, $username);
+        $password = mysqli_real_escape_string($conn, $password);
 
-    // Check if the query returned a row
-    if (mysqli_num_rows($result) === 1) {
-        // Start the session
-        session_start();
+        // استعلام قاعدة البيانات للتحقق من صحة اسم المستخدم وكلمة المرور
+        $sql = "SELECT * FROM admin WHERE username = '$username' AND password = '$password'";
+        $result = mysqli_query($conn, $sql);
 
-        // Store the user information in the session
-        $_SESSION['username'] = $username;
-
-        // Redirect to the admin page
-        header("Location: admin.php");
-        exit();
+        if (mysqli_num_rows($result) === 1) {
+            // تم التحقق من صحة اسم المستخدم وكلمة المرور
+            $_SESSION['username'] = $username;
+            header("Location: admin.php");
+            exit();
+        } else {
+            // اسم المستخدم أو كلمة المرور غير صحيحة
+            $error = "اسم المستخدم أو كلمة المرور غير صحيحة.";
+        }
     } else {
-        // Invalid username or password
-        $error = "Invalid username or password!";
+        // المفاتيح "username" و "password" غير موجودة في المصفوفة $_POST
+        $error = "يرجى تقديم اسم المستخدم وكلمة المرور.";
     }
 }
+
 ?>
 
 <!DOCTYPE html>
-<html>
+<html dir="rtl">
 <head>
-    <title>Login</title>
+    <title>تسجيل الدخول</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .container {
@@ -42,23 +47,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['submit'])) {
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>Admin Login</h1>
 
-    <?php if (isset($error)): ?>
-        <div class="alert alert-danger"><?php echo $error; ?></div>
-    <?php endif; ?>
+<div class="container">
+    <h1 class="text-center">تسجيل الدخول</h1>
+    <br>
 
     <form method="post" action="">
         <div class="form-group">
-            <label for="username">Username:</label>
+            <label for="username">اسم المستخدم:</label>
             <input type="text" name="username" id="username" class="form-control" required>
         </div>
         <div class="form-group">
-            <label for="password">Password:</label>
+            <label for="password">كلمة المرور:</label>
             <input type="password" name="password" id="password" class="form-control" required>
         </div>
-        <button type="submit" name="submit" class="btn btn-primary">Login</button>
+        <?php if (isset($error)) { ?>
+            <p class="alert alert-danger"><?php echo $error; ?></p>
+        <?php } ?>
+        <button type="submit" name="submit" class="btn btn-primary">تسجيل الدخول</button>
     </form>
 </div>
 
