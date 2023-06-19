@@ -51,13 +51,18 @@
             margin-top: 30px;
         }
     </style>
+<script>
+        function printPage() {
+            window.print();
+        }
+    </script>
 </head>
 <body>
 <?php include 'navigation.php'; ?>
 
 <div class="containt" dir="rtl">
     <h1>وصل الحجز</h1>
-
+    
     <?php
     // Get the current date
     $currentDate = date('Y-m-d');
@@ -103,15 +108,26 @@
         }
 
         // Display payment details
-        echo "<div class='payment-details'>التقط صورة لوصل الحجز</div>";
+        
         echo "<div class='payment-details'>الرجاء إتمام عملية الدفع بقيمة 50 ليرة تركية</div>";
+        echo "<div class='payment-details'>التقط صورة لوصل الحجز</div>";
+        
     } else {
         // Session variables not set, redirect to the index page
         header("Location: index.php");
         exit();
     }
     ?>
+        <div class="text-center">
+    <?php
+    echo "<button class='btn btn-primary' onclick='printPage()'>احفظ الوصل</button>";
+    echo ' <a href="index.php" class="btn btn-primary">الصفحة الرئيسية</a>';
+    ?>
+</div>
+
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
 
     </div>
 
