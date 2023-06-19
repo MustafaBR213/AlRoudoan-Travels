@@ -99,71 +99,68 @@
                                 </div>
 
                                 <div class="form-group">
-    <label>الجامعة *</label>
-    <div class="university-options">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="university-card">
-                    <input class="form-check-input" type="radio" name="university" id="university1" value="الجامعة الدولية للعلوم والنهضة" style="visibility:hidden;">
-                    <label class="form-check-label" for="university1">
-                        <img src="images/uni1.jpg" alt="الجامعة الدولية للعلوم والنهضة">
-                        <div class="check-icon">&#10003;</div>
-                        <div class="university-option-label">الجامعة الدولية للعلوم والنهضة</div>
-                    </label>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="university-card">
-                    <input class="form-check-input" type="radio" name="university" id="university2" value="جامعة غازي عنتاب(كلية الشريعة)" style="visibility:hidden;">
-                    <label class="form-check-label" for="university2">
-                        <img src="images/uni3.jpg" alt="جامعة غازي عنتاب(كلية الشريعة)">
-                        <div class="check-icon">&#10003;</div>
-                        <div class="university-option-label">جامعة غازي عنتاب(كلية الشريعة)</div>
-                    </label>
-                </div>
+                                <label>الجامعة *</label>
+<div class="university-options">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="university-card">
+                <input class="form-check-input" type="radio" name="university" id="university1" value="الجامعة الدولية للعلوم والنهضة" style="visibility:hidden;" required>
+                <label class="form-check-label" for="university1">
+                    <img src="images/uni1.jpg" alt="الجامعة الدولية للعلوم والنهضة">
+                    <div class="check-icon">&#10003;</div>
+                    <div class="university-option-label">الجامعة الدولية للعلوم والنهضة</div>
+                </label>
             </div>
         </div>
-        <br>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="university-card">
-                    <input class="form-check-input" type="radio" name="university" id="university3" value="جامعة حلب الحرة" style="visibility:hidden;">
-                    <label class="form-check-label" for="university3">
-                        <img src="images/uni2.jpg" alt="جامعة حلب الحرة">
-                        <div class="check-icon">&#10003;</div>
-                        <div class="university-option-label">جامعة حلب الحرة</div>
-                    </label>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="university-card">
-                    <input class="form-check-input" type="radio" name="university" id="university4" value="جامعة ميديبول" style="visibility:hidden;">
-                    <label class="form-check-label" for="university4">
-                        <img src="images/uni4.jpg" alt="جامعة ميديبول">
-                        <div class="check-icon">&#10003;</div>
-                        <div class="university-option-label">جامعة ميديبول</div>
-                    </label>
-                </div>
+        <div class="col-md-6">
+            <div class="university-card">
+                <input class="form-check-input" type="radio" name="university" id="university2" value="جامعة غازي عنتاب(كلية الشريعة)" style="visibility:hidden;" required>
+                <label class="form-check-label" for="university2">
+                    <img src="images/uni3.jpg" alt="جامعة غازي عنتاب(كلية الشريعة)">
+                    <div class="check-icon">&#10003;</div>
+                    <div class="university-option-label">جامعة غازي عنتاب(كلية الشريعة)</div>
+                </label>
             </div>
         </div>
-
-        <br>
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="university-card">
-                    <input class="form-check-input" type="radio" name="university" id="university5" value="جامعة الشام العالمية" style="visibility:hidden;">
-                    <label class="form-check-label" for="university5">
-                        <img src="images/uni5.jpg" alt="جامعة الشام العالمية">
-                        <div class="check-icon">&#10003;</div>
-                        <div class="university-option-label">جامعة الشام العالمية</div>
-                    </label>
-                </div>
-            </div>
     </div>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="university-card">
+                <input class="form-check-input" type="radio" name="university" id="university3" value="جامعة حلب الحرة" style="visibility:hidden;" required>
+                <label class="form-check-label" for="university3">
+                    <img src="images/uni2.jpg" alt="جامعة حلب الحرة">
+                    <div class="check-icon">&#10003;</div>
+                    <div class="university-option-label">جامعة حلب الحرة</div>
+                </label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="university-card">
+                <input class="form-check-input" type="radio" name="university" id="university4" value="جامعة ميديبول" style="visibility:hidden;" required>
+                <label class="form-check-label" for="university4">
+                    <img src="images/uni4.jpg" alt="جامعة ميديبول">
+                    <div class="check-icon">&#10003;</div>
+                    <div class="university-option-label">جامعة ميديبول</div>
+                </label>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="university-card">
+                <input class="form-check-input" type="radio" name="university" id="university5" value="جامعة الشام العالمية" style="visibility:hidden;" required>
+                <label class="form-check-label" for="university5">
+                    <img src="images/uni5.jpg" alt="جامعة الشام العالمية">
+                    <div class="check-icon">&#10003;</div>
+                    <div class="university-option-label">جامعة الشام العالمية</div>
+                </label>
+            </div>
+        </div>
     </div>
 </div>
-
+</div>
 
                                 <div class="form-group">
                                     <label for="email">الموقف *</label>
