@@ -103,7 +103,8 @@
         }
 
         // Display payment details
-        echo "<div class='payment-details'>الرجاء إتمام عملية الدفع بقيمة 50 ليرة تركية بالنهاية</div>";
+        echo "<div class='payment-details'>التقط صورة لوصل الحجز</div>";
+        echo "<div class='payment-details'>الرجاء إتمام عملية الدفع بقيمة 50 ليرة تركية</div>";
     } else {
         // Session variables not set, redirect to the index page
         header("Location: index.php");
